@@ -47,7 +47,15 @@ class DNSServer
     // Returns true if successful, false if there are no sockets available
     bool start(const uint16_t &port,
               const String &domainName,
-              const IPAddress &resolvedIP);
+              const IPAddress &resolvedIP,
+              const String &domainName1,
+              const IPAddress &resolvedIP1,
+              const String &domainName2,
+              const IPAddress &resolvedIP2,
+              const String &domainName3,
+              const IPAddress &resolvedIP3,
+              const String &domainName4,
+              const IPAddress &resolvedIP4);
     // stops the DNS server
     void stop();
 
@@ -55,7 +63,15 @@ class DNSServer
     WiFiUDP _udp;
     uint16_t _port;
     String _domainName;
+    String _domainName1;
+    String _domainName2;
+    String _domainName3;
+    String _domainName4;
     unsigned char _resolvedIP[4];
+    unsigned char _resolvedIP1[4];
+    unsigned char _resolvedIP2[4];
+    unsigned char _resolvedIP3[4];
+    unsigned char _resolvedIP4[4];
     int _currentPacketSize;
     unsigned char* _buffer;
     DNSHeader* _dnsHeader;
@@ -65,7 +81,7 @@ class DNSServer
     void downcaseAndRemoveWwwPrefix(String &domainName);
     String getDomainNameWithoutWwwPrefix();
     bool requestIncludesOnlyOneQuestion();
-    void replyWithIP();
+    void replyWithIP(uint8_t index);
     void replyWithCustomCode();
 };
 #endif
